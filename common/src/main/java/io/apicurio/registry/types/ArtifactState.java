@@ -6,26 +6,22 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ArtifactType {
+public enum ArtifactState {
 
-    AVRO("AVRO"),
-    PROTOBUF("PROTOBUF"),
-    PROTOBUF_FD("PROTOBUF_FD"),
-    JSON("JSON"),
-    OPENAPI("OPENAPI"),
-    ASYNCAPI("ASYNCAPI"),
-    GRAPHQL("GRAPHQL"),
-    KCONNECT("KCONNECT");
+    ENABLED("ENABLED"),
+    DISABLED("DISABLED"),
+    DEPRECATED("DEPRECATED"),
+    DELETED("DELETED");
     private final String value;
-    private final static Map<String, ArtifactType> CONSTANTS = new HashMap<String, ArtifactType>();
+    private final static Map<String, ArtifactState> CONSTANTS = new HashMap<String, ArtifactState>();
 
     static {
-        for (ArtifactType c: values()) {
+        for (ArtifactState c: values()) {
             CONSTANTS.put(c.value, c);
         }
     }
 
-    private ArtifactType(String value) {
+    private ArtifactState(String value) {
         this.value = value;
     }
 
@@ -40,8 +36,8 @@ public enum ArtifactType {
     }
 
     @JsonCreator
-    public static ArtifactType fromValue(String value) {
-        ArtifactType constant = CONSTANTS.get(value);
+    public static ArtifactState fromValue(String value) {
+        ArtifactState constant = CONSTANTS.get(value);
         if (constant == null) {
             throw new IllegalArgumentException(value);
         } else {

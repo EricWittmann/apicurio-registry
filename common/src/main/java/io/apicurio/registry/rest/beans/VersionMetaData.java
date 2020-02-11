@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.apicurio.registry.types.ArtifactState;
 import io.apicurio.registry.types.ArtifactType;
 
 
@@ -23,7 +24,8 @@ import io.apicurio.registry.types.ArtifactType;
     "createdBy",
     "createdOn",
     "type",
-    "globalId"
+    "globalId",
+    "state"
 })
 public class VersionMetaData {
 
@@ -67,7 +69,20 @@ public class VersionMetaData {
      */
     @JsonProperty("globalId")
     @JsonPropertyDescription("")
-    private Long globalId;
+    private Integer globalId;
+    /**
+     * Describes the state of an artifact or artifact version.  The following states
+     * are possible:
+     * 
+     * * ENABLED
+     * * DISABLED
+     * * DEPRECATED
+     * 
+     * 
+     */
+    @JsonProperty("state")
+    @JsonPropertyDescription("Describes the state of an artifact or artifact version.  The following states\nare possible:\n\n* ENABLED\n* DISABLED\n* DEPRECATED\n")
+    private ArtifactState state;
 
     /**
      * 
@@ -175,7 +190,7 @@ public class VersionMetaData {
      * 
      */
     @JsonProperty("globalId")
-    public Long getGlobalId() {
+    public Integer getGlobalId() {
         return globalId;
     }
 
@@ -185,8 +200,38 @@ public class VersionMetaData {
      * 
      */
     @JsonProperty("globalId")
-    public void setGlobalId(Long globalId) {
+    public void setGlobalId(Integer globalId) {
         this.globalId = globalId;
+    }
+
+    /**
+     * Describes the state of an artifact or artifact version.  The following states
+     * are possible:
+     * 
+     * * ENABLED
+     * * DISABLED
+     * * DEPRECATED
+     * 
+     * 
+     */
+    @JsonProperty("state")
+    public ArtifactState getState() {
+        return state;
+    }
+
+    /**
+     * Describes the state of an artifact or artifact version.  The following states
+     * are possible:
+     * 
+     * * ENABLED
+     * * DISABLED
+     * * DEPRECATED
+     * 
+     * 
+     */
+    @JsonProperty("state")
+    public void setState(ArtifactState state) {
+        this.state = state;
     }
 
 }

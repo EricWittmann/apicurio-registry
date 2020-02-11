@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.apicurio.registry.types.ArtifactState;
 import io.apicurio.registry.types.ArtifactType;
 
 
@@ -26,7 +27,8 @@ import io.apicurio.registry.types.ArtifactType;
     "id",
     "version",
     "type",
-    "globalId"
+    "globalId",
+    "state"
 })
 public class ArtifactMetaData {
 
@@ -93,7 +95,20 @@ public class ArtifactMetaData {
      */
     @JsonProperty("globalId")
     @JsonPropertyDescription("")
-    private Long globalId;
+    private Integer globalId;
+    /**
+     * Describes the state of an artifact or artifact version.  The following states
+     * are possible:
+     * 
+     * * ENABLED
+     * * DISABLED
+     * * DEPRECATED
+     * 
+     * 
+     */
+    @JsonProperty("state")
+    @JsonPropertyDescription("Describes the state of an artifact or artifact version.  The following states\nare possible:\n\n* ENABLED\n* DISABLED\n* DEPRECATED\n")
+    private ArtifactState state;
 
     @JsonProperty("name")
     public String getName() {
@@ -261,7 +276,7 @@ public class ArtifactMetaData {
      * 
      */
     @JsonProperty("globalId")
-    public Long getGlobalId() {
+    public Integer getGlobalId() {
         return globalId;
     }
 
@@ -271,23 +286,38 @@ public class ArtifactMetaData {
      * 
      */
     @JsonProperty("globalId")
-    public void setGlobalId(Long globalId) {
+    public void setGlobalId(Integer globalId) {
         this.globalId = globalId;
     }
 
-    @Override
-    public String toString() {
-        return "ArtifactMetaData{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", createdBy='" + createdBy + '\'' +
-                ", createdOn=" + createdOn +
-                ", modifiedBy='" + modifiedBy + '\'' +
-                ", modifiedOn=" + modifiedOn +
-                ", id='" + id + '\'' +
-                ", version=" + version +
-                ", type=" + type +
-                ", globalId=" + globalId +
-                '}';
+    /**
+     * Describes the state of an artifact or artifact version.  The following states
+     * are possible:
+     * 
+     * * ENABLED
+     * * DISABLED
+     * * DEPRECATED
+     * 
+     * 
+     */
+    @JsonProperty("state")
+    public ArtifactState getState() {
+        return state;
     }
+
+    /**
+     * Describes the state of an artifact or artifact version.  The following states
+     * are possible:
+     * 
+     * * ENABLED
+     * * DISABLED
+     * * DEPRECATED
+     * 
+     * 
+     */
+    @JsonProperty("state")
+    public void setState(ArtifactState state) {
+        this.state = state;
+    }
+
 }
