@@ -4,7 +4,6 @@ package io.apicurio.registry.rest.v2.beans;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
@@ -110,7 +109,7 @@ public class VersionMetaData {
      */
     @JsonProperty("properties")
     @JsonPropertyDescription("User-defined name-value pairs. Name and value must be strings.")
-    private Map<String, String> properties;
+    private Properties properties;
     /**
      * An id of a single Artifact Group.
      * 
@@ -310,7 +309,7 @@ public class VersionMetaData {
      * 
      */
     @JsonProperty("properties")
-    public Map<String, String> getProperties() {
+    public Properties getProperties() {
         return properties;
     }
 
@@ -319,7 +318,7 @@ public class VersionMetaData {
      * 
      */
     @JsonProperty("properties")
-    public void setProperties(Map<String, String> properties) {
+    public void setProperties(Properties properties) {
         this.properties = properties;
     }
 
