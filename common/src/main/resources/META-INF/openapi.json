@@ -2365,7 +2365,7 @@
                         "type": "integer"
                     },
                     "version": {
-                        "format": "int32",
+                        "format": "int64",
                         "description": "",
                         "type": "integer"
                     },
@@ -2853,5 +2853,10 @@
             "name": "Admin",
             "description": "Application functionality that is only accessible to admin users.  Includes things like Logging and Global Rules."
         }
-    ]
+    ],
+    "x-codegen": {
+        "bean-annotations": [
+            "io.quarkus.runtime.annotations.RegisterForReflection"
+        ]
+    }
 }
