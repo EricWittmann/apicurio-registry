@@ -148,6 +148,32 @@
                 "summary": "Returns the details of the registry deployment being managed"
             }
         },
+        "/system/info": {
+            "summary": "Retrieve system information",
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SystemInfo"
+                                }
+                            }
+                        },
+                        "description": "On success, returns the system information."
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                },
+                "operationId": "getSystemInfo",
+                "summary": "Get system information",
+                "description": "This operation retrieves information about the running registry system, such as the version\nof the software and when it was built."
+            }
+        },
         "x-codegen-contextRoot": "/api/v1"
     },
     "components": {
@@ -284,6 +310,49 @@
                 },
                 "x-codegen-package": "io.apicurio.multitenant.api.datamodel"
             },
+            "ResourceType": {
+                "description": "The list of possible types of a resource that can be limited",
+                "enum": [
+                    "MAX_TOTAL_SCHEMAS_COUNT",
+                    "MAX_ARTIFACTS_COUNT",
+                    "MAX_VERSIONS_PER_ARTIFACT_COUNT",
+                    "MAX_ARTIFACT_PROPERTIES_COUNT",
+                    "MAX_PROPERTY_KEY_SIZE_BYTES",
+                    "MAX_PROPERTY_VALUE_SIZE_BYTES",
+                    "MAX_ARTIFACT_LABELS_COUNT",
+                    "MAX_LABEL_SIZE_BYTES",
+                    "MAX_ARTIFACT_NAME_LENGTH_CHARS",
+                    "MAX_ARTIFACT_DESCRIPTION_LENGTH_CHARS"
+                ],
+                "type": "string"
+            },
+            "SystemInfo": {
+                "title": "Root Type for SystemInfo",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "builtOn": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Apicurio Registry (SQL)",
+                    "description": "The Apicurio Registry application.",
+                    "version": "2.0.0.Final",
+                    "builtOn": "2021-03-19T12:55:00Z"
+                },
+                "x-codegen-package": "io.apicurio.multitenant.api.datamodel"
+            },
             "TenantResource": {
                 "title": "Root Type for TenantResource",
                 "description": "Configuration of the limits for a specific resource type",
@@ -306,23 +375,8 @@
                 "example": {
                     "type": "MAX_TOTAL_SCHEMAS",
                     "limit": 1000
-                }
-            },
-            "ResourceType": {
-                "description": "The list of possible types of a resource that can be limited",
-                "enum": [
-                    "MAX_TOTAL_SCHEMAS_COUNT",
-                    "MAX_ARTIFACTS_COUNT",
-                    "MAX_VERSIONS_PER_ARTIFACT_COUNT",
-                    "MAX_ARTIFACT_PROPERTIES_COUNT",
-                    "MAX_PROPERTY_KEY_SIZE_BYTES",
-                    "MAX_PROPERTY_VALUE_SIZE_BYTES",
-                    "MAX_ARTIFACT_LABELS_COUNT",
-                    "MAX_LABEL_SIZE_BYTES",
-                    "MAX_ARTIFACT_NAME_LENGTH_CHARS",
-                    "MAX_ARTIFACT_DESCRIPTION_LENGTH_CHARS"
-                ],
-                "type": "string"
+                },
+                "x-codegen-package": "io.apicurio.multitenant.api.datamodel"
             }
         },
         "responses": {
