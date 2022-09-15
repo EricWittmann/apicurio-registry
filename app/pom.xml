@@ -17,6 +17,17 @@
         <groups></groups>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- Temporary override for CVE fix -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>1.32</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Projects -->
         <dependency>
